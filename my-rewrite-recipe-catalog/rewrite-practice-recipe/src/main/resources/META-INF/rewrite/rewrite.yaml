@@ -1,0 +1,10 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: com.etrieu00.recipes.HelloTestRecipe
+recipeList:
+  - com.etrieu00.recipe.RecipePractice:
+      fullyQualifiedClassName: com.etrieu00.demo.FooBar
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: com.etrieu00.recipes.LoggingRecipe
+recipeList:
+  - com.etrieu00.recipe.RecipeLoggingAnnotation

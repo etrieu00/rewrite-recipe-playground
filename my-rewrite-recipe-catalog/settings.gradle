@@ -1,0 +1,4 @@
+rootProject.name = 'my-rewrite-recipe-catalog'
+
+include 'rewrite-practice-recipe'
+include 'logging-annotation-core'

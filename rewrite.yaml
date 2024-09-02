@@ -1,0 +1,5 @@
+type: specs.openrewrite.org/v1beta/recipe
+name: com.etrieu00.CustomRecipe
+preconditions:
+  - org.openrewrite.java.search.FindAnnotations:
+      annotationPattern: org.springframework.web.bind.annotation.RestController

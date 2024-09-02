@@ -1,0 +1,42 @@
+plugins {
+    id "org.openrewrite.build.recipe-library-base" version "latest.release"
+}
+
+configurations.configureEach {
+    resolutionStrategy.dependencySubstitution {
+        substitute module("com.etrieu00:logging-annotation-core") using project(":logging-annotation-core")
+    }
+}
+
+dependencies {
+    implementation(platform("org.openrewrite.recipe:rewrite-recipe-bom:latest.release"))
+    implementation 'org.openrewrite:rewrite-java'
+
+    runtimeOnly 'org.openrewrite:rewrite-java-17'
+
+    compileOnly("org.projectlombok:lombok:latest.release")
+    annotationProcessor("org.projectlombok:lombok:latest.release")
+
+    testImplementation 'org.openrewrite:rewrite-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:latest.release'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:latest.release'
+
+    testRuntimeOnly 'org.springframework.boot:spring-boot-starter-web:3.3.0'
+
+    testRuntimeOnly 'com.etrieu00:logging-annotation-core'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:latest.release'
+}
+
+recipeDependencies {
+    parserClasspath 'org.springframework.boot:spring-boot-starter-web:+'
+    parserClasspath 'com.etrieu00:logging-annotation-core:+'
+}
+
+tasks.compileJava {
+    options.release.set(17)
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

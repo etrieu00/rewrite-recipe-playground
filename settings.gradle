@@ -1,0 +1,8 @@
+rootProject.name = 'open-rewrite-demo'
+
+includeBuild('my-rewrite-recipe-catalog') {
+    dependencySubstitution {
+        substitute module('com.etrieu00:practice-recipe') using project(':rewrite-practice-recipe')
+        substitute module('com.etrieu00:logging-annotation-core') using project(':logging-annotation-core')
+    }
+}

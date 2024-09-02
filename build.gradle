@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.openrewrite.rewrite' version '6.21.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = 'com.etrieu00'
+version = '0.0.1'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+dependencies {
+    implementation 'com.etrieu00:logging-annotation-core'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    rewrite 'org.openrewrite.recipe:rewrite-spring:5.18.0'
+    rewrite 'com.etrieu00:practice-recipe'
+}
+
+rewrite {
+//    activeRecipe 'org.openrewrite.java.OrderImports'
+//    activeRecipe 'org.openrewrite.java.spring.NoRequestMappingAnnotation'
+    activeRecipe 'com.etrieu00.recipes.LoggingRecipe'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
